@@ -13,6 +13,8 @@ import FileGifBox from 'vue-material-design-icons/FileGifBox.vue';
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue';
 import MenuItem from '@/Components/MenuItem.vue';
 
+let randImg2 = ref(`https://picsum.photos/id/${(Math.random()*200).toFixed(0)}/100`);
+
 
 const showingNavigationDropdown = ref(false);
 </script>
@@ -90,6 +92,43 @@ const showingNavigationDropdown = ref(false);
                         type="text"
                         placeholder="Search Twitter"
                     >
+                </div>
+                <div class="w-full rounded-lg lg:block hidden   bg-[#232427]">
+                    <div class="w-full p-4 mt-6 text-white font-extrabold text-[20px]"> 
+                        what's happening
+                    </div>
+                    <div class="h-[80px] rounded-lg hover:bg-gray-800 cursor-pointer transition duration-200 ease-in-out">
+                        <div class="flex p-3 justify-between h-[80px] py-3">
+                            <div>
+                            <div class="text-[14px] text-gray-400 ">
+                                Tennis tournement live
+                            </div>
+                            <div class="w-full text-white font-extrabold mb-6 text-[17px]">
+                                Austrian Open 2023
+                            </div>
+                            
+                            </div>
+                            <img class="rounded-xl" :src="randImg2" alt=""/>
+                        </div>
+
+                    </div>
+                    <div class=" rounded-lg hover:bg-gray-800 cursor-pointer transition duration-200 ease-in-out">
+                        <div class="flex p-3 justify-between ">
+                            <div>
+                            <div class="text-[14px] text-gray-400 ">
+                                Trending in UK
+                            </div>
+                            <div class="w-full text-white font-extrabold  text-[17px]">
+                                Doomsday Clock
+                            </div>
+                            <div class="text-[14px] text-gray-400 ">
+                               1.200 Tweets
+                            </div>
+                        </div>
+                            <DotsHorizontal fillColor="#5e5c5c" />
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
