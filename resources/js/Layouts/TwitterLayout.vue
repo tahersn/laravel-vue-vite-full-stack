@@ -12,15 +12,37 @@ import ImageOutline from 'vue-material-design-icons/ImageOutline.vue';
 import FileGifBox from 'vue-material-design-icons/FileGifBox.vue';
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue';
 import MenuItem from '@/Components/MenuItem.vue';
+import Emoticon from 'vue-material-design-icons/Emoticon.vue';
 
 let tweet = ref('');
 let createTweet = ref(false);
+let textarea = ref(null);
+let file=ref('');
+let showUpload=ref("");
+let uploadType=ref("");
 
 let randImg2 = ref(`https://picsum.photos/id/${(Math.random()*200).toFixed(0)}/100`);
 let randImg1 = ref(`https://picsum.photos/id/${(Math.random()*200).toFixed(0)}/100`);
 
 
 const showingNavigationDropdown = ref(false);
+
+
+const getFile=(e)=>{
+    file.value=e.target.files[0];
+    showUpload.value=URL.createObjectURL(e.target.files[0]);
+    uploadType.value=file.value.type.split(".").pop();
+}
+const closeMessageBox=()=>{
+    createTweet.value=false;
+    tweet.value="";
+    showUpload.value="";
+    uploadType.value="";
+}
+const textareaInput =(e)=>{
+    textarea.value.style.height = 'auto';
+    textarea.value.style.height = `${textarea.value.scrollHeight}px`;
+}
 </script>
 
 <template>
@@ -206,8 +228,51 @@ const showingNavigationDropdown = ref(false);
                     <ChevronDown fillColor="#FFFFFF"  :size="25" class="ml-2"/>
                 </div>
             </div>
+            <div>
+                <textarea
+                    :oninput="textareaInput"
+                    v-model="tweet"
+                    placeholder="What's happening?"
+                    rows="4"
+                    cols="30"
+                    ref="textarea"
+                    class="w-full max-h-56 bg-black border-0 mt-2 focus:ring-0 text-white text-[20px] font-extrabold min-h-[120px]"
+                ></textarea>
             </div>
+
+            <div class="w-full">
+                <video controls v-if="uploadType==='mp4'" :src="showUpload" class="rounded-xl overflow-auto"/>
+                <img v-else :src="showUpload" class="rounded-xl min-w-full"/>
+            </div>
+            <div class="flex items-center py-2 font-extrabold text-[#1C9CEF]">
+                <Earth class="pr-2" fillColor="#1C9CEF" :size="20"/>Everyone can reply
+            </div>
+            <div class="border-b border-b-gray-700"></div>
+            <div class="flex items-center justify-between py-2">
+                <div class="flex items-center">
+                    <div class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer">
+                            <label for="fileUpload" class="cursor-pointer">
+                                <ImageOutline fillColor="#1C9CEF" :size="25"/>
+                            </label>
+                            <input type="file" id="fileUpload" class="hidden" @change="getFile">
+                    </div>
+                    <div class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer">
+                            <FileGifBox fillColor="#1C9CEF" :size="25"/>
+                    </div>
+                    <div class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer">
+                           <Emoticon fillColor="#1C9CEF" :size="25"/>
+                    </div>
+                </div>
+                    <button 
+                            :disabled="!tweet"
+                            :class="tweet? 'bg-[#1C9CEF] text-white' :'bg-[#124D77] text-gray-400'"
+                            class="rounded-full font-extrabold cursor-pointer md:block hidden text-[10px] p-1.5 px-4">
+                                Tweet
+                    </button>
+            </div>
+            
         </div>
+    </div>
 
         </div>
     </div>
