@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref,Transition } from 'vue';
 import { router } from '@inertiajs/vue3';
 import Twitter from 'vue-material-design-icons/Twitter.vue';
 import Magnify from 'vue-material-design-icons/Magnify.vue';
@@ -39,6 +39,9 @@ const closeMessageBox=()=>{
     showUpload.value="";
     uploadType.value="";
 }
+const openMessageBox=()=>{
+    createTweet=true;
+}
 const textareaInput =(e)=>{
     textarea.value.style.height = 'auto';
     textarea.value.style.height = `${textarea.value.scrollHeight}px`;
@@ -57,7 +60,7 @@ const textareaInput =(e)=>{
                 <MenuItem iconString="bell" />
                 <MenuItem iconString="mail" />
                 <MenuItem iconString="user" />
-                <button class="lg:w-full
+                <button @click="createTweet=true" class="lg:w-full
                                mt-8
                                ml-2
                                text-white
@@ -175,7 +178,7 @@ const textareaInput =(e)=>{
                         </div>
 
                     </div>
-                    <div class=" rounded-lg hover:bg-gray-800 cursor-pointer transition duration-200 ease-in-out">
+                    <div class=" rounded-lg hover:bg-gray-800 cursor-pointer transition duration-900 ease-in-out">
                         <div class="flex p-3 justify-between ">
                             <div>
                             <div class="text-[14px] text-gray-400 ">
@@ -197,13 +200,13 @@ const textareaInput =(e)=>{
         </div>
        
     </div>
-
-    <div id="OverlaySection" class="fixed  top-0 left-0 w-full h-screen bg-black md:bg-gray-400 md:bg-opacity-30 md:p-3">
+    <Transition :duration="500">
+    <div id="OverlaySection" v-if="createTweet" class="fixed  top-0 left-0 w-full h-screen transition delay-200 ease-in-out bg-black md:bg-gray-400 md:bg-opacity-30 md:p-3">
         <div class="md:max-w-2xl  md:mx-auto md:mt-10 md:rounded-xl bg-black">
             <div
             class="flex w-full justify-between items-center rounded-full cursor-pointer md:inline-block p-2 m-2"
             >
-            <div class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer">
+            <div @click="closeMessageBox()" class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer">
                 <close fillColor="#FFFFFF" :size="25" class="md:block hidden"/>
                 <ArrowLeft fillColor="#FFFFFF" :size="25" class="md:hidden block"/>
             </div>
@@ -276,6 +279,7 @@ const textareaInput =(e)=>{
 
         </div>
     </div>
+</Transition>   
     
 </template>
 <style>
