@@ -13,7 +13,11 @@ import FileGifBox from 'vue-material-design-icons/FileGifBox.vue';
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue';
 import MenuItem from '@/Components/MenuItem.vue';
 
+let tweet = ref('');
+let createTweet = ref(false);
+
 let randImg2 = ref(`https://picsum.photos/id/${(Math.random()*200).toFixed(0)}/100`);
+let randImg1 = ref(`https://picsum.photos/id/${(Math.random()*200).toFixed(0)}/100`);
 
 
 const showingNavigationDropdown = ref(false);
@@ -27,7 +31,10 @@ const showingNavigationDropdown = ref(false);
                 <Twitter fillColor="#FFFFFF" :size="37" />
               </div> 
                 <MenuItem iconString="home" />
-
+                <MenuItem iconString="hash" />
+                <MenuItem iconString="bell" />
+                <MenuItem iconString="mail" />
+                <MenuItem iconString="user" />
                 <button class="lg:w-full
                                mt-8
                                ml-2
@@ -129,11 +136,82 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                     </div>
+                    <div class=" rounded-lg hover:bg-gray-800 cursor-pointer transition duration-200 ease-in-out">
+                        <div class="flex p-3 justify-between ">
+                            <div>
+                            <div class="text-[14px] text-gray-400 ">
+                                Trending Sports
+                            </div>
+                            <div class="w-full text-white font-extrabold  text-[17px]">
+                                Tennis
+                            </div>
+                            <div class="text-[14px] text-gray-400 ">
+                               98.200 Tweets
+                            </div>
+                        </div>
+                            <DotsHorizontal fillColor="#5e5c5c" />
+                        </div>
+
+                    </div>
+                    <div class=" rounded-lg hover:bg-gray-800 cursor-pointer transition duration-200 ease-in-out">
+                        <div class="flex p-3 justify-between ">
+                            <div>
+                            <div class="text-[14px] text-gray-400 ">
+                                Politics Trending
+                            </div>
+                            <div class="w-full text-white font-extrabold  text-[17px]">
+                                Dimocracy
+                            </div>
+                            <div class="text-[14px] text-gray-400 ">
+                               72.232 Tweets
+                            </div>
+                        </div>
+                            <DotsHorizontal fillColor="#5e5c5c" />
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-
+       
     </div>
+
+    <div id="OverlaySection" class="fixed  top-0 left-0 w-full h-screen bg-black md:bg-gray-400 md:bg-opacity-30 md:p-3">
+        <div class="md:max-w-2xl  md:mx-auto md:mt-10 md:rounded-xl bg-black">
+            <div
+            class="flex w-full justify-between items-center rounded-full cursor-pointer md:inline-block p-2 m-2"
+            >
+            <div class="hover:bg-gray-800 inline-block p-2 rounded-full cursor-pointer">
+                <close fillColor="#FFFFFF" :size="25" class="md:block hidden"/>
+                <ArrowLeft fillColor="#FFFFFF" :size="25" class="md:hidden block"/>
+            </div>
+            <button 
+            :disabled="!tweet"
+            :class="tweet? 'bg-[#1C9CEF] text-white' :'bg-[#124D77] text-gray-400'"
+            class="rounded-full font-extrabold cursor-pointer md:hidden text-[10px] p-1.5 px-4">
+                Tweet
+            </button>
+        
+        </div>
+        <div class="w-full flex">
+            <div class="ml-3.5 mr-4">
+               <img class="rounded-full " width="55" :src="randImg1" alt="">
+            </div>
+            <div class="w-[calc(100%-100px)] cursor-pointer">
+                <div class="inline-block">
+                <div class="flex items-center border border-gray-700 rounded-full">
+                    <span class="text-[#1C9CEF] p-0.5 pl-3.5 font-extrabold">
+                        Everyone
+                    </span>
+                    <ChevronDown fillColor="#FFFFFF"  :size="25" class="ml-2"/>
+                </div>
+            </div>
+            </div>
+        </div>
+
+        </div>
+    </div>
+    
 </template>
 <style>
 body {

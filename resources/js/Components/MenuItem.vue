@@ -12,6 +12,18 @@ let iconLabel = null;
 if (iconString.value === 'home') {
   iconLabel = "Home";
 }
+if (iconString.value === 'hash') {
+  iconLabel = "Explore";
+}
+if (iconString.value === 'bell') {
+  iconLabel = "Notifications";
+}
+if (iconString.value === 'mail') {
+  iconLabel = "Messages";
+}
+if (iconString.value === 'user') {
+  iconLabel = "Profile";
+}
 </script>
 
 <template>
@@ -23,4 +35,5 @@ if (iconString.value === 'home') {
       <span class="hidden lg:block ml-2 text-white text-[24px] pl-4 mt-0.5 font-extrabold">{{ iconLabel }}</span>
     </div>
   </div>
+  
 </template>
