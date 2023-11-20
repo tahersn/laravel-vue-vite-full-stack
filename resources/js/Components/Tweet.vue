@@ -10,9 +10,7 @@ import TrashCanOutline from 'vue-material-design-icons/TrashCanOutline.vue';
 
 
 defineProps({
-   tweet: {
-       type: Object,
-   },
+   tweet: Object
 });
 let openOptions= ref()
 
@@ -23,5 +21,10 @@ let openOptions= ref()
 
 
 <template>
-    {{ tweet }}
+     {{ tweet }}
+    <div>
+        <img class="rounded-full m-2 mt-3" width="50" :src="tweet.image" alt="">
+       
+    </div>
+    
 </template>

@@ -16,7 +16,7 @@ import Tweet from '@/Components/Tweet.vue';
                 handle:'@johndoe',
                 image:'https://randomuser.me/api/portraits/men/40.jpg',
                 tweet:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-                file:'/videos/sportsman.mp4',
+                file:'/videos/videoplayback.mp4',
                 is_video:true,
                 comments:10,
                 retweets:20,
