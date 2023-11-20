@@ -13,6 +13,8 @@ import Tweet from '@/Components/Tweet.vue';
            <div class="flex">
                <Tweet :tweet="{
                 name:'John Doe',
+                username:'@johndoe',
+                time:'2h',
                 handle:'@johndoe',
                 image:'https://randomuser.me/api/portraits/men/40.jpg',
                 tweet:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
