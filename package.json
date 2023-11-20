@@ -19,6 +19,8 @@
         "vue": "^3.2.41"
     },
     "dependencies": {
+        "@vueuse/components": "^10.6.1",
+        "@vueuse/core": "^10.6.1",
         "feather-icons": "^4.29.1",
         "vue-feather": "^2.0.0",
         "vue-material-design-icons": "^5.2.0"
