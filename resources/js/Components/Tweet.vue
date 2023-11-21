@@ -37,6 +37,8 @@ let openOptions= ref()
                         </div>
                         <div class="flex flex-row">
                             <h1 class="text-white font-extrabold ml-2">{{tweet.tweet}}</h1>
+                            <!-- <video v-if="tweet.file" class="rounded-xl mt-2" width="500" controls/>
+                                <source :src="tweet.file" type="video/mp4"> -->
                         </div>
                     </div>
                 </div>
