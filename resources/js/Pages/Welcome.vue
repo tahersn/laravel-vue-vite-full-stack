@@ -4,27 +4,17 @@ import TwitterLayout from '@/Layouts/TwitterLayout.vue';
 import { comment } from 'postcss';
 import Tweet from '@/Components/Tweet.vue';
 
+defineProps({
+    tweets:Array
+});
 </script>
 
 <template>
     <Head title="Welcome" />
     <TwitterLayout>
         <div class="text-white">
-           <div class="flex">
-               <Tweet :tweet="{
-                name:'John Doe',
-                username:'@johndoe',
-                time:'2h',
-                handle:'@johndoe',
-                image:'https://randomuser.me/api/portraits/men/40.jpg',
-                tweet:'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatibus.',
-                file:'/videos/videoplayback.mp4',
-                is_video:true,
-                comments:10,
-                retweets:20,
-                likes:30,
-                analytics:81
-               }" />
+           <div class="flex" v-for="tweet in tweets" :key="tweet">
+               <Tweet :tweet="tweet" />
            </div>
            <div class="border-b border-b-gray-800 mt-2"></div> 
         </div>
