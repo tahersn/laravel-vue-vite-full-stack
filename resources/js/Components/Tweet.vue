@@ -25,7 +25,7 @@ let openOptions= ref()
         
         <div>
             
-            <div class="flex flex-col p-4 justify-between">
+            <div class="flex  flex-col p-4 justify-between">
                 <div class="flex flex-row">
                     <div class="flex flex-col">
                         <div class="flex items-center flex-row ">
@@ -39,6 +39,14 @@ let openOptions= ref()
                             <h1 class="text-white font-extrabold ml-2">{{tweet.tweet}}</h1>
                             <!-- <video v-if="tweet.file" class="rounded-xl mt-2" width="500" controls/>
                                 <source :src="tweet.file" type="video/mp4"> -->
+                        </div>
+                        <div v-if="tweet.file">
+                            <div v-if="!tweet.is_video" class="rounded-xl">
+                                <img :src="tweet.file" class="mt-2 object-fill rounded-xl w-full">
+                            </div>
+                            <div v-else>
+                                <video class="rounded-xl" :src="tweet.file" controls></video>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -11,7 +11,7 @@ defineProps({
 
 <template>
     <Head title="Welcome" />
-    <TwitterLayout>
+    <TwitterLayout class="">
         <div class="text-white">
            <div class="flex" v-for="tweet in tweets" :key="tweet">
                <Tweet :tweet="tweet" />

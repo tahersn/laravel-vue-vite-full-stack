@@ -10,13 +10,12 @@ const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-    <div class="fixed w-full">
-        <div class="max-w-[1400px] flex mx-auto">
-            <Sidebar />
+    <div class=" w-full">
+            <Sidebar class=""/>
 
             <!-- Start main content -->
-            <div class="lg:w-7/12 w-11/12 border-x border-gray-800 relative">
-                <div class=" bg-black bg-opacity-50 backdrop-blur-md z-10 absolute w-full">
+            <div class="lg:w-7/12 w-11/12 border-x border-gray-800 relative ">
+                <div class=" bg-black bg-opacity-50 backdrop-blur-md z-10 w-full">
                     <div class="border-gray-800 border-b w-full">
                         <div class="w-full text-white text-[22px] font-extrabold p-4">
                             Home
