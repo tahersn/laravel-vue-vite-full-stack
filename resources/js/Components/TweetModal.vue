@@ -8,6 +8,7 @@ import ImageOutline from 'vue-material-design-icons/ImageOutline.vue';
 import FileGifBox from 'vue-material-design-icons/FileGifBox.vue';
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft.vue';
 import Emoticon from 'vue-material-design-icons/Emoticon.vue';
+import {router} from '@inertiajs/vue3';
 
 const props = defineProps({
     show: {
@@ -44,6 +45,14 @@ const textareaInput = (e) => {
     textarea.value.style.height = 'auto';
     textarea.value.style.height = `${textarea.value.scrollHeight}px`;
 }
+const addTweet = () => {
+    if(!tweet.value) return;
+    let formData = new FormData();
+    formData.append('tweet', tweet.value);
+    formData.append('file', file.value);
+    router.post('/tweets', formData);
+    closeMessageBox();
+}
 
 </script>
 
@@ -58,7 +67,7 @@ const textareaInput = (e) => {
                         <close fillColor="#FFFFFF" :size="25" class="md:block hidden" />
                         <ArrowLeft fillColor="#FFFFFF" :size="25" class="md:hidden block" />
                     </div>
-                    <button :disabled="!tweet" :class="tweet ? 'bg-[#1C9CEF] text-white' : 'bg-[#124D77] text-gray-400'"
+                    <button @click="addTweet()" :disabled="!tweet" :class="tweet ? 'bg-[#1C9CEF] text-white' : 'bg-[#124D77] text-gray-400'"
                         class="rounded-full font-extrabold cursor-pointer md:hidden text-[10px] p-1.5 px-4">
                         Tweet
                     </button>
@@ -108,6 +117,7 @@ const textareaInput = (e) => {
                                 </div>
                             </div>
                             <button :disabled="!tweet"
+                                @click="addTweet()"
                                 :class="tweet ? 'bg-[#1C9CEF] text-white' : 'bg-[#124D77] text-gray-400'"
                                 class="rounded-full font-extrabold cursor-pointer md:block hidden text-[10px] p-1.5 px-4">
                                 Tweet

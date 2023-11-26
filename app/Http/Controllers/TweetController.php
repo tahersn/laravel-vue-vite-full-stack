@@ -31,38 +31,38 @@ class TweetController extends Controller
      */
     public function store(Request $request)
     {
-        $file =null ;
+        $file = null;
         $extension = null;
-        $fileName =null;
+        $fileName = null;
         $path = '';
-        if($request->hasFile('file')){
-            $request->validate([
-                'file' => 'required|mimes:mp4,jpg,jpeg,png,gif',
-            ]);
-            $file = $request->file('file');
-            $extension = $file->getClientOriginalExtension();
-            $fileName = time().'.'.$extension;
-            $extention === 'mp4' ? $path = '/videos/' : $path = '/pics/';
-            
-            $tweet = new Tweet;
-            $tweet->name = 'taher snousis';
-            $tweet->username = 'tahersn';
-            $tweet->image = 'https://avatars.githubusercontent.com/u/93453566?v=4';
-            $tweet->time = '2h';
-            $tweet->handle = '@tahersn';
-            $tweet->tweet = $request->input('tweet');
-            if($fileName){
-                $tweet ->file = $path.$fileName;
-                $tweet->is_video = $extension === 'mp4' ? true : false;
-                $file->move(public_path().$path, $fileName);
-            }
-            $tweet->comments = rand(0,100);
-            $tweet->retweets = rand(0,100);
-            $tweet->likes = rand(0,100);
-            $tweet->analytics = rand(0,100);
-            $tweet->save();
 
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $request->validate([ 'file' => 'required|mimes:jpg,jpeg,png,mp4' ]);
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time() . '.' . $extension;
+            $extension === 'mp4' ? $path = '/videos/' : $path = '/pics/';
         }
+
+        $tweet = new Tweet;
+
+        $tweet->name = 'taher snoussi';
+        $tweet->handle = '@tahersn';
+        $tweet->username = 'tahersn';
+        $tweet->time = '1h';
+        $tweet->image = 'https://yt3.ggpht.com/e9o-24_frmNSSVvjS47rT8qCHgsHNiedqgXbzmrmpsj6H1ketcufR1B9vLXTZRa30krRksPj=s88-c-k-c0x00ffffff-no-rj-mo';
+        $tweet->tweet = $request->input('tweet');
+        if ($fileName) {
+            $tweet->file = $path . $fileName;
+            $tweet->is_video = $extension === 'mp4' ? true : false;
+            $file->move(public_path() . $path, $fileName);
+        }
+        $tweet->comments = rand(5, 500);
+        $tweet->retweets = rand(5, 500);
+        $tweet->likes = rand(5, 500);
+        $tweet->analytics = rand(5, 500);
+
+        $tweet->save();
     }
 
     /**
